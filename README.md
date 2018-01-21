@@ -2,3 +2,7 @@
 Web front-end for greenhouse; university assignment. Uploaded as evidence of Java programming abilities.
 
 For a video demonstration of the system in action, please see [this YouTube video](https://www.youtube.com/watch?v=3gejY7EfWtI).
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
