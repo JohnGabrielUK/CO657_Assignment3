@@ -1,0 +1,238 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div id="header" th:fragment="header">
+		<div class="navbit">
+			<h1>Canterbury Gardens Ltd.</h1>
+			<ul>
+			  <li><a href="/">Home</a></li>
+			  <li><a href="/sites">Sites</a></li>
+			  <li><a href="/zones">Zones</a></li>
+			  <li><a href="/devices">Devices</a></li>
+			  <li><a href="/problems">Problems</a></li>
+			</ul>
+		</div>
+	</div>
+	
+	<div id="siteList" th:fragment="siteList">
+		<table id="siteTable" class="display" cellspacing="0" width="100%">
+		<thead>
+			<th th:each="next: ${sites.header}">
+				<span th:text="${next}"></span>
+			</th>
+		</thead>
+		<tbody>
+			<tr th:each="row: ${sites.rows}">
+				<td th:each="cell: ${row}">
+					<a th:if="${cell.isLink()}"
+						th:text="${cell.contents}"
+						th:href="${cell.link}"></a>
+					<span th:unless="${cell.isLink()}"
+						th:text="${cell.contents}"></span>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		<script>$('#siteTable').DataTable();</script>
+	</div>
+	
+	<div id="zoneList" th:fragment="zoneList">
+		<table id="zoneTable" class="display" cellspacing="0" width="100%">
+		<thead>
+			<th th:each="next: ${zones.header}">
+				<span th:text="${next}"></span>
+			</th>
+		</thead>
+		<tbody>
+			<tr th:each="row: ${zones.rows}">
+				<td th:each="cell: ${row}">
+					<a th:if="${cell.isLink()}"
+						th:text="${cell.contents}"
+						th:href="${cell.link}"></a>
+					<span th:unless="${cell.isLink()}"
+						th:text="${cell.contents}"></span>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		<script>$('#zoneTable').DataTable({
+				"order": [[ 2, "asc" ]],
+    			"iDisplayLength": 25
+		})</script>
+	</div>
+	
+	<div id="deviceList" th:fragment="deviceList">
+		<table id="deviceTable" class="display" cellspacing="0" width="100%">
+		<thead>
+			<th th:each="next: ${devices.header}">
+				<span th:text="${next}"></span>
+			</th>
+		</thead>
+		<tbody>
+			<tr th:each="row: ${devices.rows}">
+				<td th:each="cell: ${row}">
+					<a th:if="${cell.isLink()}"
+						th:text="${cell.contents}"
+						th:href="${cell.link}"></a>
+					<span th:unless="${cell.isLink()}"
+						th:text="${cell.contents}"></span>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		<script>$('#deviceTable').DataTable({
+				"order": [[ 2, "asc" ]],
+    			"iDisplayLength": 25
+		})</script>
+	</div>
+	
+	<div id="problemList" th:fragment="problemList">
+		<table id="problemTable" class="display" cellspacing="0" width="100%">
+		<thead>
+			<th th:each="next: ${problems.header}">
+				<span th:text="${next}"></span>
+			</th>
+		</thead>
+		<tbody>
+			<tr th:each="row: ${problems.rows}">
+				<td th:each="cell: ${row}">
+					<a th:if="${cell.isLink()}"
+						th:text="${cell.contents}"
+						th:href="${cell.link}"></a>
+					<span th:unless="${cell.isLink()}"
+						th:text="${cell.contents}"></span>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		<script>$('#problemTable').DataTable({
+			"searching": false
+		});</script>
+	</div>
+	
+	<div id="readings" th:fragment="readings">
+		<table id="readingTable" class="display" cellspacing="0" width="100%">
+		<thead id="readingHead">
+			<th th:each="next: ${readings.header}">
+				<span th:text="${next}"></span>
+			</th>
+		</thead>
+		<tbody id="readingBody">
+			<tr th:each="row: ${readings.rows}">
+				<td th:each="cell: ${row}">
+					<a th:if="${cell.isLink()}"
+						th:text="${cell.contents}"
+						th:href="${cell.link}"></a>
+					<span th:unless="${cell.isLink()}"
+						th:text="${cell.contents}"></span>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+		<script>
+			$('#readingTable').DataTable( {
+				"order": [[ 0, "desc" ]]
+			} );
+		</script>
+	</div>
+	
+	<div id="averages" th:fragment="averages">
+		<table>
+		<thead>
+			<th th:each="next: ${averages.header}">
+				<span th:text="${next}"></span>
+			</th>
+		</thead>
+		<tbody>
+			<tr th:each="row: ${averages.rows}">
+				<td th:each="cell: ${row}">
+					<a th:if="${cell.isLink()}"
+						th:text="${cell.contents}"
+						th:href="${cell.link}"></a>
+					<span th:unless="${cell.isLink()}"
+						th:text="${cell.contents}"></span>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	
+	<div id="info" th:fragment="info">
+		<table>
+		<thead>
+			<th th:each="next: ${info.header}">
+				<span th:text="${next}"></span>
+			</th>
+		</thead>
+		<tbody>
+			<tr th:each="row: ${info.rows}">
+				<td th:each="cell: ${row}">
+					<a th:if="${cell.isLink()}"
+						th:text="${cell.contents}"
+						th:href="${cell.link}"></a>
+					<span th:unless="${cell.isLink()}"
+						th:text="${cell.contents}"></span>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	
+	<div id="current" th:fragment="current">
+		<table>
+		<thead>
+			<th th:each="next: ${current.header}">
+				<span th:text="${next}"></span>
+			</th>
+		</thead>
+		<tbody>
+			<tr th:each="row: ${current.rows}">
+				<td th:each="cell: ${row}">
+					<a th:if="${cell.isLink()}"
+						th:text="${cell.contents}"
+						th:href="${cell.link}"></a>
+					<span th:unless="${cell.isLink()}"
+						th:text="${cell.contents}"></span>
+				</td>
+			</tr>
+		</tbody>
+		</table>
+	</div>
+	
+	<div id="updateIndicator" th:fragment="updateIndicator">
+		<p th:if="${isUpdating == true}">Currently updating...</p>
+		<p th:if="${isUpdating == false}">Last update: <span th:text="${lastUpdate}">AT SOME POINT</span></p>
+	</div>
+	
+	<div id="readingChart" th:fragment="readingChart">
+		<script type="text/javascript" th:inline="javascript">
+			google.charts.load('current', {'packages':['corechart']});
+			google.charts.setOnLoadCallback(setChartReady);
+		</script>
+		<p>Display readings every: 
+		<button onclick="drawChart(chartDataStuff1)">Minute</button>
+		<button onclick="drawChart(chartDataStuff2)">10 minutes</button>
+		<button onclick="drawChart(chartDataStuff3)">Hour</button>
+		</p>
+		<div id="chart_div">
+		  <div class="spinner">
+			  <div class="rect1"></div>
+			  <div class="rect2"></div>
+			  <div class="rect3"></div>
+			  <div class="rect4"></div>
+			  <div class="rect5"></div>
+			</div>
+		</div>
+	</div>
+	
+	<div id="tempButtons" th:fragment="tempButtons">
+		<p>Temperature scale: 
+		<button onclick="$.getJSON('http://localhost:8080/setTempType?type=0'); location.reload();">Kelvin</button>
+		<button onclick="$.getJSON('http://localhost:8080/setTempType?type=1'); location.reload();">Celcius</button>
+		<button onclick="$.getJSON('http://localhost:8080/setTempType?type=2'); location.reload();">Fahrenheit</button>
+		<button onclick="$.getJSON('http://localhost:8080/setTempType?type=3'); location.reload();">Felsius</button>
+		</p>
+	</div>
+	
+</body>
+</html>

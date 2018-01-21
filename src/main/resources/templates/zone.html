@@ -1,0 +1,38 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="headerFragment">
+	<title th:text="${zone.name}"></title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Habibi" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="/lib/DataTables/datatables.min.css"/>
+	<link rel="stylesheet" href="/style.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/lib/DataTables/datatables.min.js"></script>
+	<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+	<script type="text/javascript" src="/chart_zone.js"></script>
+	<script th:inline="javascript">
+		chartTitle = [[${zone.name}]];
+		labels = [[${misc.labels}]];
+		chartDataStuff1 = getChartData([[${zone.site.getId()}]], [[${zone.getId()}]], 0);
+		chartDataStuff2 = getChartData([[${zone.site.getId()}]], [[${zone.getId()}]], 1);
+		chartDataStuff3 = getChartData([[${zone.site.getId()}]], [[${zone.getId()}]], 2);
+		function loadData(id, url) {
+			$(id).load(url);
+		}
+		var refreshId = setInterval(loadData, 60000, "#zone", "/api/zone?site=" + /*[[${zone.getSite().id}]]*/ + "\u0026zone=" + /*[[${zone.id}]]*/);
+	</script>
+</head>
+<body>
+	<div class="whitespace">
+		<div th:replace="fragments :: header"></div>
+		<div th:replace="api :: zone"></div>
+		<div th:replace="fragments :: tempButtons"></div>
+		<div th:replace="fragments :: updateIndicator"></div>
+	</div>
+	<script th:inline="javascript">
+	loadData("#zone", "/api/zone?site=" + [[${zone.getSite().id}]] + "\u0026zone=" + [[${zone.id}]]);
+	</script>
+</body>
+</html>

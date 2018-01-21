@@ -1,0 +1,84 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<body>
+	<div id="sites" th:fragment="sites">
+		<h2>Sites</h2>
+		<div th:replace="fragments :: siteList"></div>
+	</div>
+	
+	<div id="zones" th:fragment="zones">
+		<h2>Zones</h2>
+		<div th:replace="fragments :: zoneList"></div>
+	</div>
+	
+	<div id="devices" th:fragment="devices">
+		<h2>Devices</h2>
+		<div th:replace="fragments :: deviceList"></div>
+	</div>
+	
+	<div id="problems" th:fragment="problems">
+		<h2>Problems</h2>
+		<div th:replace="fragments :: problemList"></div>
+	</div>
+	
+	<div id="site" th:fragment="site">
+		<h2 th:inline="text">Site: [[${site.name}]]</h2>
+		<div class="flex-container">
+			<div class="flex-item">
+				<h3>Information</h3>
+				<div th:replace="fragments :: info"></div>
+			</div>
+			<div class="flex-item">
+				<h3>Average Readings</h3>
+				<div th:replace="fragments :: averages"></div>
+			</div>
+		</div>
+		<h3>Zones</h3>
+		<div th:replace="fragments :: zoneList"></div>
+		<h3>Chart</h3>
+		<div th:replace="fragments :: readingChart"></div>
+	</div>
+	
+	<div id="zone" th:fragment="zone">
+		<h2 th:inline="text">Zone: [[${zone.name}]]</h2>
+		<div class="flex-container">
+			<div class="flex-item">
+				<h3>Information</h3>
+				<div th:replace="fragments :: info"></div>
+			</div>
+			<div class="flex-item">
+				<h3>Average Readings</h3>
+				<div th:replace="fragments :: averages"></div>
+			</div>
+		</div>
+		<h3>Devices</h3>
+		<div th:replace="fragments :: deviceList"></div>
+		<h3>Chart</h3>
+		<div th:replace="fragments :: readingChart"></div>
+	</div>
+	
+	<div id="device" th:fragment="device">
+		<h2 th:inline="text">Device: [[${device.name}]]</h2>
+		<div class="flex-container">
+			<div class="flex-item">
+				<h3>Information</h3>
+				<div th:replace="fragments :: info"></div>
+			</div>
+			<div class="flex-item">
+				<h3>Current Readings</h3>
+				<div th:replace="fragments :: current"></div>
+			</div>
+		</div>
+		<div class="flex-container">
+			<div class="flex-item">
+				<h3>Chart</h3>
+				<div th:replace="fragments :: readingChart"></div>
+			</div>
+			<div class="flex-item">
+				<h3>Readings</h3>
+				<div th:replace="fragments :: readings"></div>
+			</div>
+		</div>
+	</div>
+</body>
+</html>

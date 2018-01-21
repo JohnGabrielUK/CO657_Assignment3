@@ -1,0 +1,29 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+	<title>Problems</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+	<link href="https://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" />
+	<link href="https://fonts.googleapis.com/css?family=Habibi" rel="stylesheet" />
+	<link rel="stylesheet" type="text/css" href="/lib/DataTables/datatables.min.css"/>
+	<link rel="stylesheet" href="/style.css"/>
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/lib/DataTables/datatables.min.js"></script>
+	<script>
+		function loadData(id, url) {
+			$(id).load(url);
+		}
+		var refreshId = setInterval(loadData, 60000, "#problems", "/api/problems");
+	</script>
+</head>
+<body>
+	<div class="whitespace">
+		<div th:replace="fragments :: header"></div>
+		<div id="flex-item" th:replace="fragments :: problemList"></div>
+		<div th:replace="fragments :: tempButtons"></div>
+		<div th:replace="fragments :: updateIndicator"></div>
+	</div>
+	<script>loadData("#problems", "/api/problems");</script>
+</body>
+</html>
